@@ -1,2 +1,2 @@
 # willkitch.me
-My new personal site :)
+My personal site :)
