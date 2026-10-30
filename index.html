@@ -2,6 +2,20 @@
 <p>hi, i'm Will</p> 
 <p>i work @ hack club on the clubs team</p>
 <p>"The lack of CSS is intentional." - Zach Latta</p>
+<p id="nowplaying" hidden>&#9835; currently listening to: <b id="np-title"></b> by <i id="np-artist"></i></p>
+<script>
+  // song comes from my laptop via a cloudflare worker
+  async function nowPlaying() {
+    try {
+      const song = await (await fetch("https://nowplaying.23kitchw.workers.dev")).json();
+      document.getElementById("np-title").textContent = song.title;
+      document.getElementById("np-artist").textContent = song.artist;
+      document.getElementById("nowplaying").hidden = !song.playing;
+    } catch {}
+  }
+  nowPlaying();
+  setInterval(nowPlaying, 15000);
+</script>
  <div class="buttons">
         <h3>buttons</h3>
         <a target="_blank" rel="noopener noreferrer" href="https://hackclub.com"><img src="assets/hackclub.png"></a>
